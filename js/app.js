@@ -21,9 +21,12 @@ function allCardsList(cards) {
   //console.log([i], allIcons[i]);
 }
 
-//display all cards in array
-console.log(allCardsList(allCards));
-console.log(allCardsList(allIcons));
+//display all cards in array - for testing purposes
+//console.log(allCardsList(allCards));
+//console.log(allCardsList(allIcons));
+
+
+
 
 /*
  *
@@ -41,12 +44,12 @@ function showCards(cards) {
       return allCardsArray;
 }
 
-showCards(allCards);
+
 
 
 /*
  *
- * Loop through each card and remove any cards with class for: match, open, or show
+ * Loop through each card and remove any cards with class: match, open, or show
  *
  */
 
@@ -64,12 +67,14 @@ function removeActions(cards) {
     */
       if (cards[i].classList.contains('match')) {
         cards[i].classList.remove('match');
-        console.log("removed 'match' class: ", cards[i]);
+        // console.log("removed 'match' class: ", cards[i]);
       }
   }
 }
 
-removeActions(allCards);
+
+
+
 
 /*
  * Display the cards on the page
@@ -93,26 +98,28 @@ removeActions(allCards);
      return array;
  }
 
-var shuffledCards = shuffle(allCardsList(allCards));
+ //display cards in the shuffled cards array - for testing purposes
+ //console.log(allCardsList(shuffledCards));
 
-//display cards in the shuffled cards array
-console.log(allCardsList(shuffledCards));
+
+
 
 
 //loop through each card and create its HTML (replace orginal deck with shuffled cards)
 function replaceClassIcon(cards) {
   for (let i =0; i < cards.length; i++) {
+  //allCardsList(cards)[i].outerHTML = allCardsList(shuffledCards)[i].outerHTML;
   allCardsList(cards)[i].outerHTML = allCardsList(shuffledCards)[i].outerHTML;
   }
 }
 
-replaceClassIcon(allCards);
-//display cards in the shuffled cards array
-console.log("0. Original Deck Card #1", allCardsList(allCards)[0].innerHTML);
+
+//display cards in the shuffled cards array - for testing purposes
+/*console.log("0. Original Deck Card #1", allCardsList(allCards)[0].innerHTML);
 console.log("1. Shuffled Deck Card #1" , allCardsList(shuffledCards)[0]);
 console.log("2. Shuffled Deck Card #1, innerHTML", allCardsList(shuffledCards)[0].innerHTML);
 console.log("3. Shuffled Deck Card #1, outerHTML", allCardsList(shuffledCards)[0].outerHTML);
-
+*/
 
 
 
@@ -127,3 +134,31 @@ console.log("3. Shuffled Deck Card #1, outerHTML", allCardsList(shuffledCards)[0
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+var shuffledCards=[];
+var shuffledCards = shuffle(allCardsList(allCards));
+
+function initGame(cards) {
+  removeActions(allCards);
+  replaceClassIcon(allCards);
+
+}
+
+initGame(allCards);
+console.log(allCardsList(allCards));
+//showCards(allCards);
+
+/*
+//when list item is clicked, call checkCard()
+
+ let thing = allCardsList(shuffledCards);
+ console.log(thing);
+
+ thing.addEventListener("click", function checkCard(event) {
+   //const cardSelected = event.target;
+   //cardSelected.setAttribute("class", "open");
+   //console.log(cardSelected);
+ });
+
+//console.log(thing);
+*/
