@@ -36,15 +36,13 @@ function allCardsList(cards) {
 
 function showCards(cards) {
     let allCardsArray = [];
-  for (let i =0; i < cards.length; i++) {
+    for (let i =0; i < cards.length; i++) {
         cards[i].classList.add('open');
         cards[i].classList.add('show');
         allCardsArray.push(cards[i]);
       }
-      return allCardsArray;
+    return allCardsArray;
 }
-
-
 
 
 /*
@@ -55,7 +53,6 @@ function showCards(cards) {
 
 function removeActions(cards) {
   for (let i =0; i < cards.length; i++) {
-    /*
       if (cards[i].classList.contains('open')) {
         cards[i].classList.remove('open');
         console.log("removed 'open' class: ", cards[i]);
@@ -64,7 +61,6 @@ function removeActions(cards) {
         cards[i].classList.remove('show');
         console.log("removed 'show' class: ", cards[i]);
       }
-    */
       if (cards[i].classList.contains('match')) {
         cards[i].classList.remove('match');
         // console.log("removed 'match' class: ", cards[i]);
@@ -108,9 +104,9 @@ function removeActions(cards) {
 //loop through each card and create its HTML (replace orginal deck with shuffled cards)
 function replaceClassIcon(cards) {
   for (let i =0; i < cards.length; i++) {
-  //allCardsList(cards)[i].outerHTML = allCardsList(shuffledCards)[i].outerHTML;
   allCardsList(cards)[i].outerHTML = allCardsList(shuffledCards)[i].outerHTML;
   }
+  return cards;
 }
 
 
@@ -140,13 +136,14 @@ var shuffledCards = shuffle(allCardsList(allCards));
 
 function initGame(cards) {
   removeActions(allCards);
-  replaceClassIcon(allCards);
-
 }
 
 initGame(allCards);
-console.log(allCardsList(allCards));
-//showCards(allCards);
+showCards(allCardsList(shuffledCards));
+replaceClassIcon(allCards);
+
+console.log(shuffledCards);
+
 
 /*
 //when list item is clicked, call checkCard()
