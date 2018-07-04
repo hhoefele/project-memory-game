@@ -138,7 +138,7 @@ function initGame(cards) {
 }
 
 initGame(allCards);
-showCards(allCardsList(shuffledCards));
+//showCards(allCardsList(shuffledCards));
 replaceClassIcon(allCards);
 
 console.log(shuffledCards);
@@ -150,7 +150,7 @@ console.log(shuffledCards);
 var thing = document.querySelector(".deck");
 thing.addEventListener("click", function checkCard(event) {
    const cardSelected = event.target;
-   cardSelected.setAttribute("class", "open");
+   cardSelected.setAttribute("class", "card open show");
    console.log(cardSelected);
    console.log("Hi");
  });
