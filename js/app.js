@@ -71,7 +71,6 @@ function removeActions(cards) {
 
 
 
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -145,17 +144,13 @@ replaceClassIcon(allCards);
 console.log(shuffledCards);
 
 
-/*
+
+
 //when list item is clicked, call checkCard()
-
- let thing = allCardsList(shuffledCards);
- console.log(thing);
-
- thing.addEventListener("click", function checkCard(event) {
-   //const cardSelected = event.target;
-   //cardSelected.setAttribute("class", "open");
-   //console.log(cardSelected);
+var thing = document.querySelector(".deck");
+thing.addEventListener("click", function checkCard(event) {
+   const cardSelected = event.target;
+   cardSelected.setAttribute("class", "open");
+   console.log(cardSelected);
+   console.log("Hi");
  });
-
-//console.log(thing);
-*/
