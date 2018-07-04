@@ -138,19 +138,31 @@ function initGame(cards) {
 }
 
 initGame(allCards);
-//showCards(allCardsList(shuffledCards));
+//showCards(allCardsList(shuffledCards)); //works after initGame, keep for testing purposes
 replaceClassIcon(allCards);
-
 console.log(shuffledCards);
 
 
 
 
 //when list item is clicked, call checkCard()
+// .closest = looks for the closest matching parent to an element that has a selector that you pass in.
 var thing = document.querySelector(".deck");
 thing.addEventListener("click", function checkCard(event) {
-   const cardSelected = event.target;
+  let cardSelected = event.target.closest('.card');
+  // If the event target doesn't match bail
+  if (!event.target.closest('.card')) return;
+  cardSelected.setAttribute("class", "card open show");
+  return  console.log(event.target);
+
+	// Otherwise, run...
+  console.log("Low");
+
+}, false);
+
+/*
+   const cardSelected = event.target.className;
    cardSelected.setAttribute("class", "card open show");
    console.log(cardSelected);
    console.log("Hi");
- });
+*/
