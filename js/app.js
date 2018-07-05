@@ -1,7 +1,5 @@
 /*
- *
  * Create a list that holds all of your cards
- *
  */
 
 const allCards = document.querySelectorAll('.card');
@@ -25,12 +23,8 @@ function allCardsList(cards) {
 //console.log(allCardsList(allCards));
 //console.log(allCardsList(allIcons));
 
-
-
 /*
- *
  * Show all cards
- *
  */
 
 function showCards(cards) {
@@ -45,9 +39,7 @@ function showCards(cards) {
 
 
 /*
- *
  * Loop through each card and remove any cards with class: match, open, or show
- *
  */
 
 function removeActions(cards) {
@@ -66,8 +58,6 @@ function removeActions(cards) {
       }
   }
 }
-
-
 
 
 /*
@@ -145,15 +135,23 @@ var openCards = [];
 
 deck.addEventListener("click", function checkCard(event) {
   let cardSelected = event.target.closest('.card');
+
+  // if card is already selected, do nothing.
+  if (cardSelected.classList.contains('open')) {
+    return
+  }
+
   // If the event target doesn't match bail
   if (!event.target.closest('.card')) return;
+
   cardSelected.setAttribute("class", "card open show");
 
   // *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+
   openCards.push(cardSelected);
   checkMatch(openCards);
 
-  return  console.log(event.target, openCards);
+  return  console.log(event.target, openCards, "LLL" , cardSelected, cardSelected.classList);
 
 	// Otherwise, run...
   console.log("otherwise");
@@ -174,7 +172,6 @@ var stars = document.querySelector('.score-panel .stars');
 function checkMatch(cards) {
   var moves = document.querySelector('.score-panel .moves');
 
-
     if(cards.length == 2){
       if (cards[0].innerHTML == cards[1].innerHTML ){
           cards[0].classList.add('match');
@@ -188,10 +185,10 @@ function checkMatch(cards) {
         cards[1].classList.remove('open');
         cards[0].classList.remove('show');
         cards[1].classList.remove('show');
+        }, 750);
         openCards = [];
         moveCounter = moveCounter + 1;
         stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
-      }, 1000);
     }
       moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
       console.log(openCards, "moveCounter: ", moveCounter, "stars: ",document.querySelectorAll(".stars li").length);
