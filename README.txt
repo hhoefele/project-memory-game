@@ -30,3 +30,6 @@ https://stackoverflow.com/questions/30035932/how-do-i-use-this-javascript-variab
 
 removeChile nodes
 https://www.w3schools.com/jsref/met_node_removechild.asp
+
+js create onclick event.target function
+https://developer.mozilla.org/en-US/docs/Web/API/Event/target

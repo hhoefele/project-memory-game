@@ -130,7 +130,9 @@ var deck = document.querySelector(".deck");
 var openCards = [];
 
 //when list item is clicked, call checkCard()
-deck.addEventListener("click", function checkCard(event) {
+deck.addEventListener("click", checkCard, false);
+
+function checkCard(event) {
   // .closest = looks for the closest matching parent to an element that has a selector that you pass in.
   let cardSelected = event.target.closest('.card');
   // if card is already selected, do nothing.
@@ -149,7 +151,7 @@ deck.addEventListener("click", function checkCard(event) {
   return  console.log(event.target, openCards, cardSelected, cardSelected.classList);
 	// Otherwise, run...
   console.log("otherwise");
-}, false);
+};
 
 /*
 * increment the move & star counter and display it on the page after checking for match
@@ -187,11 +189,13 @@ function checkMatch(cards) {
 
 
 function gameOver(){
-  let starCount = document.querySelectorAll(".stars li").length;
-    if (starCount==1) {
-      //deck.removeEventListener("click", checkCard(event));
-      console.log("Game Over");
-    }
+  setTimeout (function wait(){
+      let starCount = document.querySelectorAll(".stars li").length;
+        if (starCount==8) {
+          deck.removeEventListener("click", checkCard, false);
+          alert("Game Over");
+        }
+    }, 750);
 };
 
 
