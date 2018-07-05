@@ -27,7 +27,6 @@ function allCardsList(cards) {
 
 
 
-
 /*
  *
  * Show all cards
@@ -95,8 +94,6 @@ function removeActions(cards) {
 
  //display cards in the shuffled cards array - for testing purposes
  //console.log(allCardsList(shuffledCards));
-
-
 
 
 
@@ -186,6 +183,7 @@ function checkMatch(cards) {
           moveCounter = moveCounter + 1;
           stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
       }
+        setTimeout (function wait(){
         cards[0].classList.remove('open');
         cards[1].classList.remove('open');
         cards[0].classList.remove('show');
@@ -193,7 +191,8 @@ function checkMatch(cards) {
         openCards = [];
         moveCounter = moveCounter + 1;
         stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
+      }, 1000);
     }
       moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
-      console.log(openCards, "moveCounter", moveCounter, starCounter);
+      console.log(openCards, "moveCounter: ", moveCounter, "stars: ",document.querySelectorAll(".stars li").length);
   };
