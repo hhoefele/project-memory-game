@@ -113,7 +113,12 @@ var shuffledCards = shuffle(allCardsList(allCards));
 
 function initGame(cards) {
   removeActions(allCards);
-  replaceClassIcon(allCards);;
+  replaceClassIcon(allCards);
+  //reset star counter
+  var stars = document.querySelector('.score-panel .stars');
+      while (stars.hasChildNodes()) {
+        stars.removeChild(stars.firstChild);
+      }
 }
 
 
@@ -166,16 +171,20 @@ deck.addEventListener("click", function checkCard(event) {
 
 
 var moveCounter = 0;
+var stars = document.querySelector('.score-panel .stars');
 
 
 function checkMatch(cards) {
   var moves = document.querySelector('.score-panel .moves');
+
+
     if(cards.length == 2){
       if (cards[0].innerHTML == cards[1].innerHTML ){
           cards[0].classList.add('match');
           cards[1].classList.add('match');
           openCards = [];
           moveCounter = moveCounter + 1;
+          stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
       }
         cards[0].classList.remove('open');
         cards[1].classList.remove('open');
@@ -183,7 +192,8 @@ function checkMatch(cards) {
         cards[1].classList.remove('show');
         openCards = [];
         moveCounter = moveCounter + 1;
+        stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
     }
       moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
-      console.log(openCards, "moveCounter", moveCounter);
+      console.log(openCards, "moveCounter", moveCounter, starCounter);
   };
