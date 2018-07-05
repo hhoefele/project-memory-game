@@ -122,48 +122,38 @@ initGame(allCards);
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
 
-
-//when list item is clicked, call checkCard()
-// .closest = looks for the closest matching parent to an element that has a selector that you pass in.
 var deck = document.querySelector(".deck");
 var openCards = [];
 
+//when list item is clicked, call checkCard()
 deck.addEventListener("click", function checkCard(event) {
+  // .closest = looks for the closest matching parent to an element that has a selector that you pass in.
   let cardSelected = event.target.closest('.card');
-
   // if card is already selected, do nothing.
   if (cardSelected.classList.contains('open')) {
     return
   }
-
   // If the event target doesn't match bail
   if (!event.target.closest('.card')) return;
-
+  // show the selected card
   cardSelected.setAttribute("class", "card open show");
-
-  // *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-
+  //add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
   openCards.push(cardSelected);
+  //call checkMatch() function
   checkMatch(openCards);
 
-  return  console.log(event.target, openCards, "LLL" , cardSelected, cardSelected.classList);
-
+  return  console.log(event.target, openCards, cardSelected, cardSelected.classList);
 	// Otherwise, run...
   console.log("otherwise");
-
 }, false);
 
-/* - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-*  - if the list already has another card, check to see if the two cards match
-*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+/*
+* increment the move & star counter and display it on the page after checking for match
 */
-
 
 var moveCounter = 0;
 var stars = document.querySelector('.score-panel .stars');
@@ -193,3 +183,12 @@ function checkMatch(cards) {
       moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
       console.log(openCards, "moveCounter: ", moveCounter, "stars: ",document.querySelectorAll(".stars li").length);
   };
+
+function gameOver(event){
+  if (moveCounter==2) {
+    deck.removeEventListener("click", checkCard(event));
+    console.log("Game Over");
+  }
+};
+
+//gameOver(event);
