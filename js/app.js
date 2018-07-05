@@ -108,15 +108,19 @@ function replaceClassIcon(cards) {
   return cards;
 }
 
+var shuffledCards=[];
+var shuffledCards = shuffle(allCardsList(allCards));
 
-//display cards in the shuffled cards array - for testing purposes
-/*console.log("0. Original Deck Card #1", allCardsList(allCards)[0].innerHTML);
-console.log("1. Shuffled Deck Card #1" , allCardsList(shuffledCards)[0]);
-console.log("2. Shuffled Deck Card #1, innerHTML", allCardsList(shuffledCards)[0].innerHTML);
-console.log("3. Shuffled Deck Card #1, outerHTML", allCardsList(shuffledCards)[0].outerHTML);
-*/
+function initGame(cards) {
+  removeActions(allCards);
+  replaceClassIcon(allCards);;
+}
 
 
+initGame(allCards);
+//showCards(allCardsList(shuffledCards)); //works after initGame, keep for testing purposes
+//replaceClassIcon(allCards);
+//console.log(shuffledCards); //keep for testing
 
 
 /*
@@ -130,39 +134,48 @@ console.log("3. Shuffled Deck Card #1, outerHTML", allCardsList(shuffledCards)[0
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-var shuffledCards=[];
-var shuffledCards = shuffle(allCardsList(allCards));
-
-function initGame(cards) {
-  removeActions(allCards);
-}
-
-initGame(allCards);
-//showCards(allCardsList(shuffledCards)); //works after initGame, keep for testing purposes
-replaceClassIcon(allCards);
-console.log(shuffledCards);
-
-
 
 
 //when list item is clicked, call checkCard()
 // .closest = looks for the closest matching parent to an element that has a selector that you pass in.
-var thing = document.querySelector(".deck");
-thing.addEventListener("click", function checkCard(event) {
+var deck = document.querySelector(".deck");
+var openCards = [];
+
+deck.addEventListener("click", function checkCard(event) {
   let cardSelected = event.target.closest('.card');
   // If the event target doesn't match bail
   if (!event.target.closest('.card')) return;
   cardSelected.setAttribute("class", "card open show");
-  return  console.log(event.target);
+
+  // *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+  openCards.push(cardSelected);
+  checkMatch(openCards);
+
+  return  console.log(event.target, openCards);
 
 	// Otherwise, run...
-  console.log("Low");
+  console.log("otherwise");
 
 }, false);
 
-/*
-   const cardSelected = event.target.className;
-   cardSelected.setAttribute("class", "card open show");
-   console.log(cardSelected);
-   console.log("Hi");
+/* - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+*  - if the list already has another card, check to see if the two cards match
+*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
 */
+
+
+function checkMatch(cards) {
+  for (let i =0; cards.length <=2; i++) {
+        if (cards[i].classList.contains("card", "open", "show")) {
+          console.log("yessssss");
+          cards[i].classList.remove('open');
+          //console.log("yessssss");
+          cards[i].classList.add('match');
+          //console.log("Yup",openCards.length, cards[i], cards[i].classList);
+        }
+  }
+  //console.log("Yup",openCards.length);
+};
+checkMatch(openCards);
+//console.log(openCards);

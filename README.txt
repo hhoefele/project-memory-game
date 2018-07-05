@@ -15,3 +15,12 @@ https://www.w3schools.com/js/js_function_closures.asp
 
 Get class of element fired / JS event class target
 https://gomakethings.com/checking-event-target-selectors-with-event-bubbling-in-vanilla-javascript/
+
+Loops and iteration
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
+
+classList
+https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+
+functions
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
