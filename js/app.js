@@ -164,23 +164,26 @@ deck.addEventListener("click", function checkCard(event) {
 *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
 */
 
+
+var moveCounter = 0;
+
+
 function checkMatch(cards) {
+  var moves = document.querySelector('.score-panel .moves');
     if(cards.length == 2){
       if (cards[0].innerHTML == cards[1].innerHTML ){
           cards[0].classList.add('match');
           cards[1].classList.add('match');
           openCards = [];
+          moveCounter = moveCounter + 1;
       }
+        cards[0].classList.remove('open');
+        cards[1].classList.remove('open');
+        cards[0].classList.remove('show');
+        cards[1].classList.remove('show');
+        openCards = [];
+        moveCounter = moveCounter + 1;
     }
+      moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
+      console.log(openCards, "moveCounter", moveCounter);
   };
-/*
-function checkMatch(cards) {
-  for (let i =0; cards.length <=2; i++) {
-        if (cards[i].classList.contains("card", "open", "show")) {
-          console.log("yessssss");
-          cards[i].classList.add('match');
-        }
-  }
-};
-*/
-console.log(openCards);

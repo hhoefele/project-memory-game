@@ -24,3 +24,6 @@ https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 
 functions
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
+
+js add variable to html
+https://stackoverflow.com/questions/30035932/how-do-i-use-this-javascript-variable-in-html
