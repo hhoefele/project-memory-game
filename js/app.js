@@ -99,8 +99,8 @@ var shuffledCards=[];
 var shuffledCards = shuffle(allCardsList(allCards));
 
 function initGame(cards) {
-  removeActions(allCards);
-  replaceClassIcon(allCards);
+  removeActions(cards);
+  replaceClassIcon(cards);
   //reset star counter
   var stars = document.querySelector('.score-panel .stars');
       while (stars.hasChildNodes()) {
@@ -178,17 +178,28 @@ function checkMatch(cards) {
         }, 750);
         openCards = [];
         moveCounter = moveCounter + 1;
-        stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
     }
       moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
-      console.log(openCards, "moveCounter: ", moveCounter, "stars: ",document.querySelectorAll(".stars li").length);
+      console.log(openCards, "moveCounter: ", moveCounter, "stars: ", document.querySelectorAll(".stars li").length);
+      //if starCount reaches max then game is over
+      gameOver();
   };
 
-function gameOver(event){
-  if (moveCounter==2) {
-    deck.removeEventListener("click", checkCard(event));
-    console.log("Game Over");
-  }
+
+function gameOver(){
+  let starCount = document.querySelectorAll(".stars li").length;
+    if (starCount==1) {
+      //deck.removeEventListener("click", checkCard(event));
+      console.log("Game Over");
+    }
 };
 
-//gameOver(event);
+
+/*
+function resetGame(event) {
+  shuffle(allCardsList(allCards));
+  initGame(shuffledCards);
+  var resetIcon = document.querySelector('.score-panel .restart');
+
+};
+*/
