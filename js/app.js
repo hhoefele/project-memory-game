@@ -189,7 +189,11 @@ resetIcon.addEventListener("click", resetGame, false);
 function resetGame() {
   const allCards = document.querySelectorAll('.card');
   //console.log(allCards); returns Node list.
+
   const allIcons = document.querySelectorAll('ul.deck i.fa');
   //console.log(allCards); returns Node list of all icons.
+  var moveCounter = 0;
+  var shuffledCards=[];
+  var shuffledCards = shuffle(allCardsList(allCards));
   initGame(allCards);
 };
