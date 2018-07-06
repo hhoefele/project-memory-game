@@ -74,13 +74,15 @@ function removeActions(cards) {
  //display cards in the shuffled cards array - for testing purposes
  //console.log(allCardsList(shuffledCards));
 
+
 //loop through each card and create its HTML (replace orginal deck with shuffled cards)
 function replaceClassIcon(cards) {
   for (let i =0; i < cards.length; i++) {
   allCardsList(cards)[i].outerHTML = allCardsList(shuffledCards)[i].outerHTML;
   }
-  return cards;
 }
+
+
 
 var shuffledCards=[];
 var shuffledCards = shuffle(allCardsList(allCards));
@@ -126,7 +128,9 @@ function checkCard(event) {
   //call checkMatch() function
   checkMatch(openCards);
 
-  return  console.log(event.target, openCards, cardSelected, cardSelected.classList);
+  //return  console.log(event.target, openCards, cardSelected, cardSelected.classList);
+  return  console.log(cardSelected);
+
 	// Otherwise, run...
   console.log("otherwise");
 };
@@ -183,12 +187,9 @@ var resetIcon = document.querySelector('.score-panel .restart');
 resetIcon.addEventListener("click", resetGame, false);
 
 function resetGame() {
-  //initGame(allCards);
-  allCardsList(allCards);
-  removeActions(allCards);
-  var shuffledCards=[];
-  var shuffledCards = shuffle(allCardsList(allCards));
-  shuffle(allCardsList(allCards));
-  replaceClassIcon();
-
+  const allCards = document.querySelectorAll('.card');
+  //console.log(allCards); returns Node list.
+  const allIcons = document.querySelectorAll('ul.deck i.fa');
+  //console.log(allCards); returns Node list of all icons.
+  initGame(allCards);
 };
