@@ -80,8 +80,7 @@ function replaceClassIcon(cards) {
   for (let i =0; i < cards.length; i++) {
   allCardsList(cards)[i].outerHTML = allCardsList(shuffledCards)[i].outerHTML;
   }
-}
-
+};
 
 
 var shuffledCards=[];
@@ -90,12 +89,13 @@ var shuffledCards = shuffle(allCardsList(allCards));
 function initGame(cards) {
   allCardsList(cards);
   removeActions(cards);
+  var shuffledCards = shuffle(allCardsList(cards));
   replaceClassIcon(cards);
   //reset star counter
   var stars = document.querySelector('.score-panel .stars');
-      while (stars.hasChildNodes()) {
+      /*while (stars.hasChildNodes()) {
         stars.removeChild(stars.firstChild);
-      }
+      }*/
 }
 
 
@@ -141,7 +141,7 @@ function checkCard(event) {
 
 var moveCounter = 0;
 var stars = document.querySelector('.score-panel .stars');
-
+var matches = 0;
 
 function checkMatch(cards) {
   var moves = document.querySelector('.score-panel .moves');
@@ -152,7 +152,8 @@ function checkMatch(cards) {
           cards[1].classList.add('match');
           openCards = [];
           moveCounter = moveCounter + 1;
-          stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
+          matches = matches + 1;
+          //stars.removeChild(stars.firstChild);
       }
         setTimeout (function wait(){
         cards[0].classList.remove('open');
@@ -164,8 +165,8 @@ function checkMatch(cards) {
         moveCounter = moveCounter + 1;
     }
       moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
-      console.log(openCards, "moveCounter: ", moveCounter, "stars: ", document.querySelectorAll(".stars li").length);
-      //if starCount reaches max then game is over
+      console.log(matches, openCards, "moveCounter: ", moveCounter, "stars: ", document.querySelectorAll(".stars li").length);
+      //if matches reaches max (8), then game is over
       gameOver();
   };
 
@@ -173,8 +174,7 @@ function checkMatch(cards) {
 
 function gameOver(){
   setTimeout (function wait(){
-      let starCount = document.querySelectorAll(".stars li").length;
-        if (starCount==8) {
+        if (matches==2) {
           deck.removeEventListener("click", checkCard, false);
           alert("Game Over");
         }
@@ -184,8 +184,9 @@ function gameOver(){
 //reset the game when reset icon is clicked
 
 var resetIcon = document.querySelector('.score-panel .restart');
-resetIcon.addEventListener("click", resetGame, false);
+//resetIcon.addEventListener("click", resetGame, false);
 
+/*
 function resetGame() {
   const allCards = document.querySelectorAll('.card');
   //console.log(allCards); returns Node list.
@@ -196,4 +197,6 @@ function resetGame() {
   var shuffledCards=[];
   var shuffledCards = shuffle(allCardsList(allCards));
   initGame(allCards);
+  //console.log(allCardsList(allCards),shuffledCards);
 };
+*/
