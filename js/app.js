@@ -153,7 +153,6 @@ function checkMatch(cards) {
           openCards = [];
           moveCounter = moveCounter + 1;
           matches = matches + 1;
-          //stars.removeChild(stars.firstChild);
       }
         setTimeout (function wait(){
         cards[0].classList.remove('open');
@@ -163,6 +162,15 @@ function checkMatch(cards) {
         }, 750);
         openCards = [];
         moveCounter = moveCounter + 1;
+    }
+    if (moveCounter == 6 ){
+      stars.removeChild(stars.firstChild);
+    }
+    if (moveCounter == 12 ){
+      stars.removeChild(stars.firstChild);
+    }
+    if (moveCounter == 18 ){
+      stars.removeChild(stars.firstChild);
     }
       moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
       console.log(matches, openCards, "moveCounter: ", moveCounter, "stars: ", document.querySelectorAll(".stars li").length);
@@ -174,9 +182,9 @@ function checkMatch(cards) {
 
 function gameOver(){
   setTimeout (function wait(){
-        if (matches==2) {
+        if (matches==8) {
           deck.removeEventListener("click", checkCard, false);
-          alert("Game Over");
+          alert("Game Over! " + "You won with: " + document.querySelectorAll(".stars li").length + " stars." );
         }
     }, 750);
 };
