@@ -163,13 +163,13 @@ function checkMatch(cards) {
         openCards = [];
         moveCounter = moveCounter + 1;
     }
-    if (moveCounter == 6 ){
+    if (moveCounter == 16 ){
       stars.removeChild(stars.firstChild);
     }
-    if (moveCounter == 12 ){
+    if (moveCounter == 20 ){
       stars.removeChild(stars.firstChild);
     }
-    if (moveCounter == 18 ){
+    if (moveCounter == 24 ){
       stars.removeChild(stars.firstChild);
     }
       moves.outerHTML = '<span class="moves">'+ moveCounter + '</span>';
@@ -184,7 +184,10 @@ function gameOver(){
   setTimeout (function wait(){
         if (matches==8) {
           deck.removeEventListener("click", checkCard, false);
-          alert("Game Over! " + "You won with: " + document.querySelectorAll(".stars li").length + " stars." );
+          if (document.querySelectorAll(".stars li").length == 1){
+            alert("Game Over! " + "\nYou won with: " + document.querySelectorAll(".stars li").length + " star.\nDo you want to play again?" );
+          }
+          alert("Game Over! " + "\nYou won with: " + document.querySelectorAll(".stars li").length + " stars.\nDo you want to play again?" );
         }
     }, 750);
 };
@@ -192,7 +195,8 @@ function gameOver(){
 //reset the game when reset icon is clicked
 
 var resetIcon = document.querySelector('.score-panel .restart');
-//resetIcon.addEventListener("click", resetGame, false);
+
+resetIcon.addEventListener("click", resetGame, false);
 
 /*
 function resetGame() {
