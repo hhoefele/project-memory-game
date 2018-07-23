@@ -74,28 +74,35 @@ function removeActions(cards) {
  //display cards in the shuffled cards array - for testing purposes
  //console.log(allCardsList(shuffledCards));
 
+ var shuffledCards=[];
+ var shuffledCards = shuffle(allCardsList(allCards));
+ var unshuffledCards = allCardsList(allCards);
+ var moveCounter = 0;
+
 
 //loop through each card and create its HTML (replace orginal deck with shuffled cards)
 function replaceClassIcon(cards) {
   for (let i =0; i < cards.length; i++) {
-  allCardsList(cards)[i].outerHTML = allCardsList(shuffledCards)[i].outerHTML;
+  unshuffledCards[i].outerHTML = shuffledCards[i].outerHTML;
   }
 };
 
 
-var shuffledCards=[];
-var shuffledCards = shuffle(allCardsList(allCards));
-
 function initGame(cards) {
+  //var shuffledCards = shuffle(allCardsList(allCards));
   allCardsList(cards);
   removeActions(cards);
   var shuffledCards = shuffle(allCardsList(cards));
   replaceClassIcon(cards);
+
   //reset star counter
   var stars = document.querySelector('.score-panel .stars');
-      /*while (stars.hasChildNodes()) {
+      while (stars.hasChildNodes()) {
         stars.removeChild(stars.firstChild);
-      }*/
+      }
+      stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
+      stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
+      stars.insertAdjacentHTML('beforeend','<li><i class="fa fa-star"></i></li>');
 }
 
 
@@ -103,7 +110,6 @@ initGame(allCards);
 //showCards(allCardsList(shuffledCards)); //works after initGame, keep for testing purposes
 //replaceClassIcon(allCards);
 //console.log(shuffledCards); //keep for testing
-
 
 
 var deck = document.querySelector(".deck");
@@ -117,9 +123,9 @@ function checkCard(event) {
   let cardSelected = event.target.closest('.card');
   // if card is already selected, do nothing.
   if (cardSelected.classList.contains('open')) {
-    return
+    return;
   }
-  // If the event target doesn't match bail
+  // If the event target doesn't match then stop
   if (!event.target.closest('.card')) return;
   // show the selected card
   cardSelected.setAttribute("class", "card open show");
@@ -139,7 +145,6 @@ function checkCard(event) {
 * increment the move & star counter and display it on the page after checking for match
 */
 
-var moveCounter = 0;
 var stars = document.querySelector('.score-panel .stars');
 var matches = 0;
 
@@ -196,19 +201,4 @@ function gameOver(){
 
 var resetIcon = document.querySelector('.score-panel .restart');
 
-resetIcon.addEventListener("click", resetGame, false);
-
-/*
-function resetGame() {
-  const allCards = document.querySelectorAll('.card');
-  //console.log(allCards); returns Node list.
-
-  const allIcons = document.querySelectorAll('ul.deck i.fa');
-  //console.log(allCards); returns Node list of all icons.
-  var moveCounter = 0;
-  var shuffledCards=[];
-  var shuffledCards = shuffle(allCardsList(allCards));
-  initGame(allCards);
-  //console.log(allCardsList(allCards),shuffledCards);
-};
-*/
+resetIcon.addEventListener("click", initGame(allCards), false);

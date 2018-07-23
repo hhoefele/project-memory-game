@@ -33,3 +33,6 @@ https://www.w3schools.com/jsref/met_node_removechild.asp
 
 js create onclick event.target function
 https://developer.mozilla.org/en-US/docs/Web/API/Event/target
+
+clock
+https://matthewcranford.com/memory-game-walkthrough-part-6-the-clock/
